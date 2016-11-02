@@ -11,7 +11,7 @@ import java.util.List;
 @ApplicationScoped
 public class EntreeEnRelationManager {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "EERPU")
     private EntityManager entityManager;
 
 
