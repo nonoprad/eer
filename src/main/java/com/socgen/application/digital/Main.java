@@ -21,7 +21,7 @@ public class Main {
 
         JavaArchive driverArchiveToDeploy;
 
-        String environnement = System.getProperty("env.name","DB");
+        String environnement = System.getProperty("env.name","DH");
 
         if (!environnement.equals("DB")) {
             swarm.fraction(buildDataSourcePostgreSQL());

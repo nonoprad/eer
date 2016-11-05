@@ -16,7 +16,7 @@
     </logger>
     <!-- ### log Hibernate model to schema tool ### -->
     <logger name="org.hibernate.tool.hbm2ddl">
-        <level value="DEBUG" />
+        <level value="TRACE" />
     </logger>
     <root>
         <level value="WARN"/>

@@ -4,7 +4,6 @@ package com.socgen.application.digital.controller;
 
 import com.socgen.application.digital.modele.EntreeEnRelation;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

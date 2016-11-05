@@ -5,7 +5,7 @@
   <groupId>com.socgen.digital.agence</groupId>
   <artifactId>entree-en-relation-api</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>eer-api</name>
 
@@ -24,15 +24,6 @@
       </resource>
   </resources>
   <plugins>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-            <failOnMissingWebXml>false</failOnMissingWebXml>
-            <warName>eer-api</warName>
-        </configuration>
-    </plugin>
   <plugin>
       <!-- http://mydevnotes.nicus.it/2013/03/generate-ddl-with-maven-jpa-hibernate-4.html -->
       <groupId>de.juplo</groupId>

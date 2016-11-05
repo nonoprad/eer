@@ -1,5 +1,6 @@
 package com.socgen.application.digital.modele;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,5 +26,12 @@ public class EntreeEnRelation implements Serializable {
     private String raisonSociale;
     @Getter @Setter
     private String adresse;
-
+    @Getter @Setter
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dateCreate;
+    @Getter @Setter
+    private String typeSociete;
+    @Version
+    @Column(columnDefinition = "int4 default '0'")
+    private int version;
 }
