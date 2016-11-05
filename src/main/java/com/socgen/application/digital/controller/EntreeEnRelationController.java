@@ -3,10 +3,11 @@ package com.socgen.application.digital.controller;
 
 
 import com.socgen.application.digital.modele.EntreeEnRelation;
-import com.socgen.application.digital.service.EntreeEnRelationManager;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,19 +15,16 @@ import java.util.List;
 
 @Path("eer")
 @RequestScoped
-@Transactional
 public class EntreeEnRelationController {
 
-    @Inject
-    private EntreeEnRelationManager entreeEnRelationManager;
-
+    @PersistenceContext(unitName = "EERPU")
+    private EntityManager entityManager;
 
 
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<EntreeEnRelation> findAll(){
-        return entreeEnRelationManager.findAll();
+        return entityManager.createNamedQuery("findAll", EntreeEnRelation.class).getResultList();
     }
 
 
@@ -34,13 +32,13 @@ public class EntreeEnRelationController {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public EntreeEnRelation get(@PathParam("id") Long id){
-        return entreeEnRelationManager.get(id);
+        return entityManager.find(EntreeEnRelation.class, id);
     }
 
     @POST
-    @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional(Transactional.TxType.REQUIRED)
     public void createEntreeEnRelation(final EntreeEnRelation entreeEnRelation) {
-        entreeEnRelationManager.createEntreeEnRelation(entreeEnRelation);
+        entityManager.persist(entreeEnRelation);
     }
 }

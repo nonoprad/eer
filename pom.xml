@@ -23,50 +23,62 @@
           <filtering>true</filtering>
       </resource>
   </resources>
-    <plugins>
-      <plugin>
+  <plugins>
+    <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>2.3</version>
         <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-          <warName>eer-api</warName>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+            <warName>eer-api</warName>
         </configuration>
-      </plugin>
+    </plugin>
+  <plugin>
+      <!-- http://mydevnotes.nicus.it/2013/03/generate-ddl-with-maven-jpa-hibernate-4.html -->
+      <groupId>de.juplo</groupId>
+      <artifactId>hibernate4-maven-plugin</artifactId>
+      <version>1.1.0</version>
+      <configuration>
+          <hibernateDialect>org.hibernate.dialect.PostgreSQLDialect</hibernateDialect>
+          <delimiter>;</delimiter>
+          <target>SCRIPT</target>
+          <outputFile>${project.build.directory}/schema-hibernate4-maven-plugin.sql</outputFile>
+      </configuration>
+  </plugin>
     <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
         <version>${version.wildfly-swarm}</version>
-        <configuration>
-            <mainClass>com.socgen.application.digital.Main</mainClass>
-        </configuration>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>package</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>package</id>
-            </execution>
-            <execution>
-                <id>start</id>
-            </execution>
-            <execution>
-                <id>stop</id>
-            </execution>
-        </executions>
-    </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
+                <mainClass>com.socgen.application.digital.Main</mainClass>
             </configuration>
-        </plugin>
-
-    </plugins>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>package</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>package</id>
+                </execution>
+                <execution>
+                    <id>start</id>
+                </execution>
+                <execution>
+                    <id>stop</id>
+                </execution>
+            </executions>
+    </plugin>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+        </configuration>
+    </plugin>
+</plugins>
   </build>
 
   <dependencies>
@@ -86,6 +98,12 @@
           <groupId>org.wildfly.swarm</groupId>
           <artifactId>transactions</artifactId>
           <version>${version.wildfly-swarm}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <version>${version.h2}</version>
       </dependency>
 
 

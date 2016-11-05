@@ -1,9 +1,6 @@
 package com.socgen.application.digital.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +13,8 @@ import java.util.Date;
 @NamedQueries({
     @NamedQuery(name="findAll", query = "SELECT eer FROM EntreeEnRelation eer")
 })
+@ToString
+@EqualsAndHashCode
 public class EntreeEnRelation implements Serializable {
 
     @Id
@@ -26,4 +25,5 @@ public class EntreeEnRelation implements Serializable {
     private String raisonSociale;
     @Getter @Setter
     private String adresse;
+
 }

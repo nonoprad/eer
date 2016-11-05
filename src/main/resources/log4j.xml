@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+    <appender name="CA" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+    <!-- ### log just the SQL ### -->
+    <logger name="org.hibernate.SQL">
+        <level value="DEBUG" />
+    </logger>
+    <!-- ### log JDBC bind parameters ### -->
+    <logger name="org.hibernate.type">
+        <level value="TRACE" />
+    </logger>
+    <!-- ### log Hibernate model to schema tool ### -->
+    <logger name="org.hibernate.tool.hbm2ddl">
+        <level value="DEBUG" />
+    </logger>
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="CA"/>
+    </root>
+</log4j:configuration>
